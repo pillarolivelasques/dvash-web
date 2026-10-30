@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dvash Studio · Biblias pintadas a mano</title>
+  <link rel="icon" href="img/favicon.png">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            crema:  '#F6F1E3',   // fondo papel
+            lino:   '#ECE3D3',   // fondo secundario
+            oliva:  '#4F5A3A',   // verde del monograma
+            rosa:   '#9C7D72',   // rosa del sello
+            rubor:  '#E7D3CA',   // rosa claro
+            oro:    '#B39150'    // dorado (solo detalles)
+          },
+          fontFamily: {
+            serif:  ['"Cormorant Garamond"', 'serif'],
+            sc:     ['"Cormorant SC"', 'serif'],
+            script: ['"Pinyon Script"', 'cursive']
+          }
+        }
+      }
+    }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Cormorant+SC:wght@500&family=Pinyon+Script&display=swap" rel="stylesheet">
+
+  <style>
+    /* Hueco para fotos que aún faltan: sustituir el div .foto por <img src="img/..." class="w-full h-full object-cover"> */
+    .foto {
+      background: #ECE3D3;
+      border: 1px dashed rgba(79, 90, 58, .35);
+      display: flex; align-items: center; justify-content: center;
+      text-align: center; padding: 1.5rem;
+      font-family: "Cormorant SC", serif; letter-spacing: .08em;
+      color: rgba(79, 90, 58, .7); font-size: 15px; line-height: 1.4;
+    }
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+    .no-scrollbar { scrollbar-width: none; }
+    .marco { background: url(img/marco.png) center / 100% 100% no-repeat; }
+      a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid #9C7D72; outline-offset: 3px; }
+  </style>
+</head>
+
+<body class="bg-crema text-oliva font-serif text-[17px] leading-relaxed">
+
+  <!-- ===== BARRA SUPERIOR ===== -->
+  <div class="bg-oliva text-crema text-center py-2 font-sc text-sm tracking-[0.2em]">
+    Biblias pintadas a mano · Hechas en Madrid
+  </div>
+
+  <!-- ===== CABECERA ===== -->
+  <header class="border-b border-oliva/20">
+    <nav class="grid grid-cols-3 items-center px-4 md:px-10 py-4">
+      <!-- Botón menú móvil (solo en móvil) -->
+      <button id="btn-menu" class="md:hidden justify-self-start p-2 -ml-2 hover:text-rosa" aria-label="Abrir menú" aria-expanded="false" aria-controls="menu-movil">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path class="linea-1" d="M3 7h18"/><path class="linea-2" d="M3 12h18"/><path class="linea-3" d="M3 17h18"/></svg>
+      </button>
+      <ul class="hidden md:flex gap-8 font-sc tracking-widest text-sm">
+        <li><a href="#coleccion" class="hover:text-rosa">Colección</a></li>
+        <li><a href="#estilos" class="hover:text-rosa">Estilos</a></li>
+      </ul>
+      <a href="#" class="justify-self-center"><img src="img/logo-dvash.png" alt="Dvash" class="h-10 md:h-12"></a>
+      <ul class="flex gap-6 justify-end font-sc tracking-widest text-sm">
+        <li class="hidden md:block"><a href="#taller" class="hover:text-rosa">El taller</a></li>
+        <li><a href="#contacto" class="hover:text-rosa">Encargar</a></li>
+      </ul>
+    </nav>
+
+    <!-- Menú móvil (se abre con jQuery) -->
+    <nav id="menu-movil" aria-label="Menú móvil" class="md:hidden border-t border-oliva/20" style="display:none">
+      <ul class="flex flex-col px-4 py-2 text-2xl">
+        <li><a href="#coleccion" class="block py-3 border-b border-oliva/10 hover:text-rosa">Colección</a></li>
+        <li><a href="#estilos" class="block py-3 border-b border-oliva/10 hover:text-rosa">Estilos</a></li>
+        <li><a href="#taller" class="block py-3 border-b border-oliva/10 hover:text-rosa">El taller</a></li>
+        <li><a href="#contacto" class="block py-3 hover:text-rosa">Encargar</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+
+  <!-- ===== PORTADA: ramos y frase ===== -->
+  <section id="portada" class="relative bg-[#FDF7E9] border-b border-oliva/20 min-h-[85vh] flex items-center justify-center overflow-hidden">
+    <div class="absolute inset-0 bg-center bg-no-repeat bg-cover md:bg-contain"
+         style="background-image:url(img/ramas-fondo.jpg)"></div>
+    <div class="relative z-10 text-center px-10 max-w-md">
+      <p class="font-sc tracking-[0.3em] text-sm text-rosa mb-6">Salmo 119:103</p>
+      <h1 class="italic text-4xl md:text-5xl leading-tight">
+        Más dulce que la miel<br>es tu Palabra.
+      </h1>
+      <a href="#coleccion" class="inline-block mt-8 font-sc tracking-widest text-sm border-b border-oliva pb-1 hover:text-rosa hover:border-rosa">
+        ver la colección
+      </a>
+    </div>
+  </section>
+
+  <!-- ===== CARRUSEL NUMERADO ===== -->
+  <section class="border-b border-oliva/20">
+    <div class="flex overflow-x-auto snap-x snap-mandatory no-scrollbar">
+      <a href="biblia-the-vine.html" class="snap-start shrink-0 w-[75vw] sm:w-[40vw] lg:w-[25vw] border-r border-oliva/20 group">
+        <img src="img/ramas-frente.jpg" alt="Biblia The Vine" class="w-full aspect-[5/7] object-cover">
+        <span class="flex justify-between items-baseline px-4 py-3"><span class="font-sc text-sm">1/4</span><span class="italic text-xl group-hover:text-rosa">The Vine</span></span>
+      </a>
+      <a href="biblia-sweeter-than-honey.html" class="snap-start shrink-0 w-[75vw] sm:w-[40vw] lg:w-[25vw] border-r border-oliva/20 group">
+        <img src="img/jardin-frente.jpg" alt="Biblia Sweeter than Honey" class="w-full aspect-[5/7] object-cover">
+        <span class="flex justify-between items-baseline px-4 py-3"><span class="font-sc text-sm">2/4</span><span class="italic text-xl group-hover:text-rosa">Sweeter than Honey</span></span>
+      </a>
+      <a href="biblia-lilies-of-the-field.html" class="snap-start shrink-0 w-[75vw] sm:w-[40vw] lg:w-[25vw] border-r border-oliva/20 group">
+        <img src="img/campo-frente.jpg" alt="Biblia Lilies of the Field" class="w-full aspect-[5/7] object-cover">
+        <span class="flex justify-between items-baseline px-4 py-3"><span class="font-sc text-sm">3/4</span><span class="italic text-xl group-hover:text-rosa">Lilies of the Field</span></span>
+      </a>
+      <a href="biblia-above-the-waters.html" class="snap-start shrink-0 w-[75vw] sm:w-[40vw] lg:w-[25vw] group">
+        <img src="img/mar-frente.jpg" alt="Biblia Above the Waters" class="w-full aspect-[5/7] object-cover">
+        <span class="flex justify-between items-baseline px-4 py-3"><span class="font-sc text-sm">4/4</span><span class="italic text-xl group-hover:text-rosa">Above the Waters</span></span>
+      </a>
+    </div>
+  </section>
+
+  <!-- ===== SALMO DENTRO DE LA MOLDURA ===== -->
+  <section class="px-4 py-20 md:py-28 border-b border-oliva/20">
+    <div class="marco mx-auto w-full max-w-xl aspect-[3/4] flex flex-col items-center justify-center text-center px-[22%] pt-[18%]">
+      <p class="font-script text-3xl sm:text-4xl md:text-5xl leading-snug">
+        ¡Cuán dulces son a mi paladar tus palabras! Más que la miel a mi boca.
+      </p>
+      <p class="font-script text-2xl md:text-3xl mt-6 text-rosa">Salmo 119:103</p>
+      <p class="font-sc tracking-wider text-sm md:text-base mt-8 max-w-xs">
+        Biblias pintadas a mano, para la Palabra que es más dulce que la miel.
+      </p>
+      <a href="#coleccion" class="mt-8 font-sc tracking-[0.2em] text-sm border-b border-oliva pb-1 hover:text-rosa hover:border-rosa">ver la colección</a>
+    </div>
+  </section>
+
+  <!-- ===== RECIÉN PINTADAS (al pasar el ratón se ve la contraportada) ===== -->
+  <section id="coleccion" class="px-4 md:px-10 py-20 border-b border-oliva/20">
+    <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-12">
+      <div>
+        <h2 class="text-5xl">Recién pintadas</h2>
+        <p class="mt-2 italic text-oliva/70">Cada Biblia lleva un versículo propio en la contraportada.</p>
+      </div>
+      <a href="#contacto" class="font-sc tracking-[0.2em] text-sm border-b border-oliva pb-1 self-start md:self-auto">ver todas</a>
+    </div>
+
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-x-6 gap-y-12">
+      <a href="biblia-the-vine.html" class="group">
+        <div class="relative aspect-[5/7] overflow-hidden bg-lino">
+          <img src="img/ramas-frente.jpg" alt="The Vine, portada" class="absolute inset-0 w-full h-full object-cover transition duration-500 group-hover:opacity-0">
+          <img src="img/ramas-trasera.jpg" alt="The Vine, contraportada con Isaías 40:8" class="absolute inset-0 w-full h-full object-cover opacity-0 transition duration-500 group-hover:opacity-100">
+        </div>
+        <p class="text-2xl mt-3 group-hover:text-rosa">The Vine</p>
+        <p class="font-sc text-sm tracking-wider text-oliva/60">Ramas en acuarela · Isaías 40:8</p>
+        <p class="mt-1">89 €</p>
+      </a>
+      <a href="biblia-sweeter-than-honey.html" class="group">
+        <div class="relative aspect-[5/7] overflow-hidden bg-lino">
+          <img src="img/jardin-frente.jpg" alt="Sweeter than Honey, portada" class="absolute inset-0 w-full h-full object-cover transition duration-500 group-hover:opacity-0">
+          <img src="img/jardin-trasera.jpg" alt="Sweeter than Honey, contraportada con Salmo 119:103" class="absolute inset-0 w-full h-full object-cover opacity-0 transition duration-500 group-hover:opacity-100">
+        </div>
+        <p class="text-2xl mt-3 group-hover:text-rosa">Sweeter than Honey</p>
+        <p class="font-sc text-sm tracking-wider text-oliva/60">Jardín de miel · Salmo 119:103</p>
+        <p class="mt-1">89 €</p>
+      </a>
+      <a href="biblia-lilies-of-the-field.html" class="group">
+        <div class="relative aspect-[5/7] overflow-hidden bg-lino">
+          <img src="img/campo-frente.jpg" alt="Lilies of the Field, portada" class="absolute inset-0 w-full h-full object-cover transition duration-500 group-hover:opacity-0">
+          <img src="img/campo-trasera.jpg" alt="Lilies of the Field, contraportada con Salmo 119:103" class="absolute inset-0 w-full h-full object-cover opacity-0 transition duration-500 group-hover:opacity-100">
+        </div>
+        <p class="text-2xl mt-3 group-hover:text-rosa">Lilies of the Field</p>
+        <p class="font-sc text-sm tracking-wider text-oliva/60">Campo de flores · Salmo 119:103</p>
+        <p class="mt-1">89 €</p>
+      </a>
+      <a href="biblia-above-the-waters.html" class="group">
+        <div class="relative aspect-[5/7] overflow-hidden bg-lino">
+          <img src="img/mar-frente.jpg" alt="Above the Waters, portada" class="absolute inset-0 w-full h-full object-cover transition duration-500 group-hover:opacity-0">
+          <img src="img/mar-trasera.jpg" alt="Above the Waters, contraportada con Deuteronomio 7:9" class="absolute inset-0 w-full h-full object-cover opacity-0 transition duration-500 group-hover:opacity-100">
+        </div>
+        <p class="text-2xl mt-3 group-hover:text-rosa">Above the Waters</p>
+        <p class="font-sc text-sm tracking-wider text-oliva/60">Sobre las aguas · Deuteronomio 7:9</p>
+        <p class="mt-1">89 €</p>
+      </a>
+    </div>
+  </section>
+
+  <!-- ===== MANIFIESTO: DVASH = MIEL ===== -->
+  <section class="px-4 md:px-10 py-20 md:py-28 border-b border-oliva/20 grid md:grid-cols-2 gap-12 items-center">
+    <img src="img/abeja.jpg" alt="Abeja Dvash con hoja de oro" class="w-full max-w-md mx-auto">
+    <div>
+      <p class="font-sc tracking-[0.2em] text-sm text-rosa">Dvash · דבש · miel</p>
+      <p class="text-3xl md:text-5xl leading-tight mt-4">
+        Dvash significa <em>miel</em> en hebreo. Creemos que la Biblia que abres cada mañana
+        merece ser tan dulce por fuera como lo es por dentro.
+      </p>
+      <p class="mt-6 text-oliva/80 max-w-md">
+        Cada tapa nace de una acuarela original, se imprime sobre algodón y se termina a mano,
+        con detalles en dorado. Piezas pensadas para leer, regalar y heredar.
+      </p>
+      <a href="#taller" class="inline-block mt-8 font-sc tracking-[0.2em] text-sm border-b border-oliva pb-1">nuestra historia</a>
+    </div>
+  </section>
+
+  <!-- ===== EXPLORAR POR ESTILO (vista previa al pasar el ratón) ===== -->
+  <section id="estilos" class="px-4 md:px-10 py-20 border-b border-oliva/20">
+    <h2 class="text-5xl mb-12">Explorar por estilo</h2>
+    <div class="grid md:grid-cols-2 gap-12">
+      <ul class="border-t border-oliva/20">
+        <li><a href="biblia-the-vine.html" data-img="img/ramas-frente.jpg" data-txt="Ramas verdes en acuarela sobre lino crudo. Silencioso, natural, sin nada que compita."
+            class="estilo border-b border-oliva/20 py-4 flex justify-between items-baseline text-3xl hover:italic hover:text-rosa">
+          <span>Botánico <span class="block text-base italic text-oliva/60">The Vine</span></span> <span class="font-sc text-sm">01</span></a></li>
+        <li><a href="biblia-sweeter-than-honey.html" data-img="img/jardin-frente.jpg" data-txt="Flores, panales y abejas en rosa y verde. El estampado de la casa."
+            class="estilo border-b border-oliva/20 py-4 flex justify-between items-baseline text-3xl hover:italic hover:text-rosa">
+          <span>Jardín de miel <span class="block text-base italic text-oliva/60">Sweeter than Honey</span></span> <span class="font-sc text-sm">02</span></a></li>
+        <li><a href="biblia-lilies-of-the-field.html" data-img="img/campo-frente.jpg" data-txt="Jesús con un cordero bajo un árbol, en un campo de flores al amanecer."
+            class="estilo border-b border-oliva/20 py-4 flex justify-between items-baseline text-3xl hover:italic hover:text-rosa">
+          <span>Paisaje <span class="block text-base italic text-oliva/60">Lilies of the Field</span></span> <span class="font-sc text-sm">03</span></a></li>
+        <li><a href="biblia-above-the-waters.html" data-img="img/mar-frente.jpg" data-txt="Mar, palomas y el horizonte abierto, en azules de acuarela."
+            class="estilo border-b border-oliva/20 py-4 flex justify-between items-baseline text-3xl hover:italic hover:text-rosa">
+          <span>Sobre las aguas <span class="block text-base italic text-oliva/60">Above the Waters</span></span> <span class="font-sc text-sm">04</span></a></li>
+        <li><a href="#contacto" data-img="img/sello.png" data-txt="Tu inicial, tu flor, tu versículo. Diseñamos la tapa contigo, pieza única."
+            class="estilo border-b border-oliva/20 py-4 flex justify-between items-baseline text-3xl hover:italic hover:text-rosa">
+          <span>Personalizada <span class="block text-base italic text-oliva/60">Diseñada contigo</span></span> <span class="font-sc text-sm">05</span></a></li>
+      </ul>
+      <div class="hidden md:block">
+        <div class="bg-lino aspect-[5/7] max-h-[80vh] mx-auto overflow-hidden">
+          <img id="preview" src="img/ramas-frente.jpg" alt="" class="w-full h-full object-contain transition-opacity duration-300">
+        </div>
+        <p id="preview-txt" class="mt-4 max-w-sm italic text-oliva/70">Ramas verdes en acuarela sobre lino crudo. Silencioso, natural, sin nada que compita.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SI BUSCAS UN REGALO PARA... (pestañas) ===== -->
+  <section class="px-4 md:px-10 py-20 border-b border-oliva/20 bg-lino">
+    <div class="grid md:grid-cols-2 gap-12 items-center">
+      <div>
+        <h2 class="text-4xl mb-6">Si buscas un regalo para…</h2>
+        <div id="tabs" class="flex flex-wrap gap-x-6 gap-y-2 mb-8 font-sc tracking-wider">
+          <button data-tab="0" class="tab">(●) un bautizo</button>
+          <button data-tab="1" class="tab text-oliva/50">( ) una boda</button>
+          <button data-tab="2" class="tab text-oliva/50">( ) una primera comunión</button>
+          <button data-tab="3" class="tab text-oliva/50">( ) ti misma</button>
+        </div>
+        <p id="tab-txt" class="text-3xl md:text-4xl leading-tight">
+          Una primera Biblia con su nombre en dorado, para que la abra cuando sepa leer y la guarde cuando sea mayor.
+        </p>
+        <a href="#contacto" class="inline-block mt-8 font-sc tracking-[0.2em] text-sm border-b border-oliva pb-1">encargar</a>
+      </div>
+      <div id="tab-foto" class="foto aspect-[4/5] bg-crema">Foto · Biblia con lazo blanco y zapatitos de bebé</div>
+    </div>
+  </section>
+
+  <!-- ===== EL TALLER (comercio de barrio) ===== -->
+  <section id="taller" class="px-4 md:px-10 py-20 border-b border-oliva/20">
+    <div class="grid md:grid-cols-12 gap-8 mb-14">
+      <p class="md:col-span-3 font-sc tracking-[0.2em] text-sm text-rosa">El taller</p>
+      <h2 class="md:col-span-9 text-4xl md:text-6xl leading-tight">
+        Todo pasa a pocas calles: <em>la acuarela, la imprenta, el forrado y el dorado.</em>
+      </h2>
+    </div>
+    <ol class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+      <li>
+        <div class="foto aspect-square">Foto · pincel pintando la acuarela</div>
+        <p class="font-sc text-sm text-oliva/60 mt-4">Nº 01</p>
+        <p class="text-2xl">Acuarela</p>
+        <p class="text-oliva/75 mt-1">Cada diseño se pinta a mano en el estudio.</p>
+      </li>
+      <li>
+        <div class="foto aspect-square">Foto · la tela saliendo de la imprenta</div>
+        <p class="font-sc text-sm text-oliva/60 mt-4">Nº 02</p>
+        <p class="text-2xl">Impresión en tela</p>
+        <p class="text-oliva/75 mt-1">Sobre loneta de algodón, en una imprenta del barrio de Salamanca.</p>
+      </li>
+      <li>
+        <div class="foto aspect-square">Foto · manos forrando la tapa</div>
+        <p class="font-sc text-sm text-oliva/60 mt-4">Nº 03</p>
+        <p class="text-2xl">Forrado</p>
+        <p class="text-oliva/75 mt-1">La tela se ajusta y se forra a mano, pieza a pieza.</p>
+      </li>
+      <li>
+        <div class="foto aspect-square">Foto · detalle del dorado (hot stamping)</div>
+        <p class="font-sc text-sm text-oliva/60 mt-4">Nº 04</p>
+        <p class="text-2xl">Dorado</p>
+        <p class="text-oliva/75 mt-1">Hot stamping en un taller artesanal de Madrid.</p>
+      </li>
+    </ol>
+  </section>
+
+  <!-- ===== FRANJA CON EL ESTAMPADO ===== -->
+  <div class="h-28 md:h-40 bg-center bg-cover" style="background-image:url(img/patron.jpg)"></div>
+
+  <!-- ===== CARTA / ENCARGO ===== -->
+  <section id="contacto" class="px-4 md:px-10 py-20 md:py-28 grid md:grid-cols-2 gap-12 items-center border-b border-oliva/20">
+    <!-- Simulación del embalaje: estampado + sello. Sustituir por una foto real del paquete -->
+    <div class="relative aspect-[4/3] bg-center bg-cover" style="background-image:url(img/patron.jpg)">
+      <img src="img/sello.png" alt="Sello Dvash" class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-1/3 drop-shadow-lg">
+    </div>
+    <div>
+      <h2 class="text-5xl mb-4">Recibe la carta</h2>
+      <p class="text-oliva/80 mb-8 max-w-md">
+        Una vez al mes: nuevos diseños, el proceso desde dentro y, a veces, un versículo
+        que no nos podemos quitar de la cabeza. <em>Y un 10% en tu primer encargo.</em>
+      </p>
+      <form class="flex border-b border-oliva" onsubmit="event.preventDefault(); this.innerHTML='<p class=&quot;py-3 italic&quot;>¡Ya estás en la lista!</p>'">
+        <input type="email" required placeholder="tu email" class="flex-1 bg-transparent py-3 outline-none placeholder:text-oliva/50">
+        <button class="font-sc tracking-[0.2em] text-sm hover:text-rosa">suscribirse</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- ===== PIE ===== -->
+  </main>
+
+  <footer class="px-4 md:px-10 py-14">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-8 mb-16">
+      <div>
+        <p class="font-sc tracking-[0.2em] text-sm mb-3 text-rosa">Tienda</p>
+        <ul class="space-y-1"><li><a href="#coleccion">Colección</a></li><li><a href="#estilos">Estilos</a></li><li><a href="#contacto">Personalizada</a></li></ul>
+      </div>
+      <div>
+        <p class="font-sc tracking-[0.2em] text-sm mb-3 text-rosa">Información</p>
+        <ul class="space-y-1"><li><a href="#taller">El taller</a></li><li><a href="#">Envíos</a></li><li><a href="#">Preguntas</a></li></ul>
+      </div>
+      <div>
+        <p class="font-sc tracking-[0.2em] text-sm mb-3 text-rosa">Síguenos</p>
+        <ul class="space-y-1"><li><a href="https://instagram.com/dvash.studio">Instagram</a></li><li><a href="#">Pinterest</a></li></ul>
+      </div>
+      <div>
+        <p class="font-sc tracking-[0.2em] text-sm mb-3 text-rosa">Visítanos</p>
+        <p>Madrid, con cita previa.</p>
+      </div>
+    </div>
+    <div class="flex justify-between items-end border-t border-oliva/20 pt-8">
+      <img src="img/logo-dvash.png" alt="Dvash" class="h-16 md:h-28">
+      <a href="#" class="font-sc tracking-wider text-sm hover:text-rosa">↑ volver arriba</a>
+    </div>
+  </footer>
+
+  <!-- ===== JS (jQuery): portada, vista previa de estilos + pestañas ===== -->
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script>
+    $(function () {
+
+      // Menú móvil
+      $('#btn-menu').on('click', function () {
+        const abierto = $(this).attr('aria-expanded') === 'true';
+        $(this).attr({ 'aria-expanded': !abierto, 'aria-label': abierto ? 'Abrir menú' : 'Cerrar menú' });
+        $('#menu-movil').stop().slideToggle(250);
+      });
+      $('#menu-movil a').on('click', function () {
+        $('#menu-movil').slideUp(200);
+        $('#btn-menu').attr({ 'aria-expanded': false, 'aria-label': 'Abrir menú' });
+      });
+
+      // Portada: la frase aparece suavemente
+      $('#portada h1, #portada p, #portada a').hide().each(function (i) {
+        $(this).delay(300 + i * 250).fadeIn(900);
+      });
+
+      // Vista previa al pasar por cada estilo
+      $('.estilo').on('mouseenter', function () {
+        $('#preview').attr('src', $(this).data('img'));
+        $('#preview-txt').text($(this).data('txt'));
+      });
+
+      // Pestañas "Si buscas un regalo para..."
+      const etiquetas = ['un bautizo', 'una boda', 'una primera comunión', 'ti misma'];
+      const textos = [
+        'Una primera Biblia con su nombre en dorado, para que la abra cuando sepa leer y la guarde cuando sea mayor.',
+        'La Biblia de la casa nueva: con las iniciales de los dos y la fecha del sí, para leerla juntos muchos años.',
+        'Un regalo que no se queda en un cajón: su flor favorita en la tapa y un versículo escogido para ese día.',
+        'Porque también mereces abrir algo bonito cada mañana. Elige tu diseño, o lo pintamos contigo.'
+      ];
+      const fotos = [
+        'Foto · Biblia con lazo blanco y zapatitos de bebé',
+        'Foto · Biblia con alianzas y flores secas',
+        'Foto · Biblia con flores blancas y rosario',
+        'Foto · Biblia con café y luz de mañana'
+      ];
+      $('.tab').on('click', function () {
+        const i = Number($(this).data('tab'));
+        $('.tab').each(function (j) {
+          $(this).text((j === i ? '(●) ' : '( ) ') + etiquetas[j])
+                 .toggleClass('text-oliva/50', j !== i);
+        });
+        $('#tab-txt').hide().text(textos[i]).fadeIn(400);
+        $('#tab-foto').text(fotos[i]);
+      });
+
+    });
+  </script>
+</body>
+</html>

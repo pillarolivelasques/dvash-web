@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lilies of the Field · Dvash Studio</title>
+  <link rel="icon" href="img/favicon.png">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            crema:  '#F6F1E3',   // fondo papel
+            lino:   '#ECE3D3',   // fondo secundario
+            oliva:  '#4F5A3A',   // verde del monograma
+            rosa:   '#9C7D72',   // rosa del sello
+            rubor:  '#E7D3CA',   // rosa claro
+            oro:    '#B39150'    // dorado (solo detalles)
+          },
+          fontFamily: {
+            serif:  ['"Cormorant Garamond"', 'serif'],
+            sc:     ['"Cormorant SC"', 'serif'],
+            script: ['"Pinyon Script"', 'cursive']
+          }
+        }
+      }
+    }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Cormorant+SC:wght@500&family=Pinyon+Script&display=swap" rel="stylesheet">
+
+  <style>
+    /* Hueco para fotos que aún faltan: sustituir el div .foto por <img src="img/..." class="w-full h-full object-cover"> */
+    .foto {
+      background: #ECE3D3;
+      border: 1px dashed rgba(79, 90, 58, .35);
+      display: flex; align-items: center; justify-content: center;
+      text-align: center; padding: 1.5rem;
+      font-family: "Cormorant SC", serif; letter-spacing: .08em;
+      color: rgba(79, 90, 58, .7); font-size: 15px; line-height: 1.4;
+    }
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+    .no-scrollbar { scrollbar-width: none; }
+    .marco { background: url(img/marco.png) center / 100% 100% no-repeat; }
+      a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid #9C7D72; outline-offset: 3px; }
+  </style>
+</head>
+
+<body class="bg-crema text-oliva font-serif text-[17px] leading-relaxed">
+
+  <!-- ===== BARRA SUPERIOR ===== -->
+  <div class="bg-oliva text-crema text-center py-2 font-sc text-sm tracking-[0.2em]">
+    Biblias pintadas a mano · Hechas en Madrid
+  </div>
+
+  <!-- ===== CABECERA ===== -->
+  <header class="border-b border-oliva/20">
+    <nav class="grid grid-cols-3 items-center px-4 md:px-10 py-4">
+      <!-- Botón menú móvil (solo en móvil) -->
+      <button id="btn-menu" class="md:hidden justify-self-start p-2 -ml-2 hover:text-rosa" aria-label="Abrir menú" aria-expanded="false" aria-controls="menu-movil">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path class="linea-1" d="M3 7h18"/><path class="linea-2" d="M3 12h18"/><path class="linea-3" d="M3 17h18"/></svg>
+      </button>
+      <ul class="hidden md:flex gap-8 font-sc tracking-widest text-sm">
+        <li><a href="index.html#coleccion" class="hover:text-rosa">Colección</a></li>
+        <li><a href="index.html#estilos" class="hover:text-rosa">Estilos</a></li>
+      </ul>
+      <a href="index.html" class="justify-self-center"><img src="img/logo-dvash.png" alt="Dvash" class="h-10 md:h-12"></a>
+      <ul class="flex gap-6 justify-end font-sc tracking-widest text-sm">
+        <li class="hidden md:block"><a href="index.html#taller" class="hover:text-rosa">El taller</a></li>
+        <li><a href="index.html#contacto" class="hover:text-rosa">Encargar</a></li>
+      </ul>
+    </nav>
+
+    <!-- Menú móvil (se abre con jQuery) -->
+    <nav id="menu-movil" aria-label="Menú móvil" class="md:hidden border-t border-oliva/20" style="display:none">
+      <ul class="flex flex-col px-4 py-2 text-2xl">
+        <li><a href="index.html#coleccion" class="block py-3 border-b border-oliva/10 hover:text-rosa">Colección</a></li>
+        <li><a href="index.html#estilos" class="block py-3 border-b border-oliva/10 hover:text-rosa">Estilos</a></li>
+        <li><a href="index.html#taller" class="block py-3 border-b border-oliva/10 hover:text-rosa">El taller</a></li>
+        <li><a href="index.html#contacto" class="block py-3 hover:text-rosa">Encargar</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <!-- ===== PRODUCTO ===== -->
+    <section class="px-4 md:px-10 py-10 md:py-16 grid md:grid-cols-2 gap-10 md:gap-16 border-b border-oliva/20">
+
+      <!-- Galería: portada / contraportada -->
+      <div>
+        <div class="relative bg-lino aspect-[5/7] overflow-hidden [container-type:inline-size]">
+          <!-- Mockup: el nombre aparece en dorado sobre la portada -->
+          <span id="nombre-en-tapa" aria-hidden="true"
+                class="font-serif absolute z-10 -translate-x-1/2 text-center whitespace-nowrap pointer-events-none tracking-wide"
+                style="left:52%; top:34.5%; font-size:3.4cqw; background:linear-gradient(120deg,#8C6A2C 0%,#E9D08C 35%,#B08E45 50%,#F3DFA2 65%,#8F6E2E 100%);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 1px 0 rgba(255,255,255,.35)) drop-shadow(0 -1px 0 rgba(80,55,20,.25)); display:none"></span>
+          <img id="foto-principal" src="img/campo-frente.jpg" alt="Lilies of the Field, portada" class="w-full h-full object-cover">
+        </div>
+        <div class="grid grid-cols-2 gap-4 mt-4">
+          <button class="miniatura border border-oliva" data-foto="img/campo-frente.jpg" data-alt="Lilies of the Field, portada">
+            <img src="img/campo-frente.jpg" alt="" class="w-full aspect-[5/7] object-cover">
+            <span class="block font-sc text-sm py-2">Portada</span>
+          </button>
+          <button class="miniatura border border-transparent hover:border-oliva/40" data-foto="img/campo-trasera.jpg" data-alt="Lilies of the Field, contraportada">
+            <img src="img/campo-trasera.jpg" alt="" class="w-full aspect-[5/7] object-cover">
+            <span class="block font-sc text-sm py-2">Contraportada</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Información -->
+      <div class="md:sticky md:top-8 self-start">
+        <nav aria-label="Ruta" class="font-sc text-sm tracking-wider text-oliva/60 mb-6">
+          <a href="index.html" class="hover:text-rosa">Inicio</a> /
+          <a href="index.html#coleccion" class="hover:text-rosa">Colección</a> /
+          <span>Lilies of the Field</span>
+        </nav>
+        <p class="font-sc tracking-[0.2em] text-sm text-rosa">Campo de flores</p>
+        <h1 class="text-5xl md:text-6xl leading-tight mt-2">Lilies of the Field</h1>
+        <p class="italic text-oliva/70 text-xl">Lirios del campo</p>
+
+        <p class="text-3xl mt-6"><span id="precio">89</span> €</p>
+
+        <p class="mt-6 text-xl">Jesús descansa bajo un árbol con un cordero en brazos, en medio de un campo de flores y con las montañas al amanecer. Todo en acuarela suave, sobre lino crudo.</p>
+        <p class="mt-4 text-oliva/80">El nombre viene de Mateo 6:28: «Considerad los lirios del campo, cómo crecen; no trabajan ni hilan». Es una tapa para quien necesita descansar y confiar: el Buen Pastor en medio de las flores, cuidando de lo suyo sin prisa. En la contraportada sigue el mismo paisaje, con el Salmo 119:103.</p>
+
+        <blockquote class="mt-8 border-l-2 border-rosa pl-5 italic">
+          «¡Cuán dulces son a mi paladar tus palabras! Más que la miel a mi boca.»
+          <span class="block not-italic font-sc text-sm tracking-wider text-rosa mt-2">Salmo 119:103 · contraportada</span>
+        </blockquote>
+
+        <!-- Personalización -->
+        <div class="mt-8 border-t border-oliva/20 pt-6">
+          <label class="flex items-center gap-3 cursor-pointer">
+            <input id="personalizar" type="checkbox" class="accent-oliva w-4 h-4">
+            <span>Añadir un nombre en dorado <span class="text-oliva/60">(+15 €)</span></span>
+          </label>
+          <div id="campo-nombre" class="mt-4" style="display:none">
+            <label for="nombre" class="font-sc text-sm tracking-wider">Nombre o iniciales</label>
+            <input id="nombre" type="text" maxlength="20" placeholder="Ej.: Sofía" class="mt-1 w-full bg-transparent border-b border-oliva py-2 outline-none placeholder:text-oliva/40">
+            <p class="mt-3 italic text-oliva/70">Así se verá: <span id="vista-nombre" class="font-serif text-2xl tracking-wide" style="background:linear-gradient(120deg,#8C6A2C 0%,#E9D08C 35%,#B08E45 50%,#F3DFA2 65%,#8F6E2E 100%);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 1px 0 rgba(255,255,255,.35)) drop-shadow(0 -1px 0 rgba(80,55,20,.25))">Sofía</span></p>
+          </div>
+        </div>
+
+        <a id="encargar" href="index.html#contacto" class="block text-center mt-8 bg-oliva text-crema font-sc tracking-[0.2em] py-4 hover:bg-rosa transition">Encargar</a>
+        <p class="mt-3 text-center text-sm italic text-oliva/60">Pintada y forrada a mano en Madrid · entrega en 2–4 semanas</p>
+
+        <!-- Detalles (acordeón) -->
+        <div class="mt-10 border-t border-oliva/20">
+          <div class="detalle border-b border-oliva/20">
+            <button class="titulo-detalle w-full flex justify-between py-4 font-sc tracking-wider text-left">Materiales <span>+</span></button>
+            <div class="contenido-detalle pb-4 text-oliva/80" style="display:none">Acuarela original impresa sobre loneta de algodón, forrada a mano y con el título en dorado (hot stamping).</div>
+          </div>
+          <div class="detalle border-b border-oliva/20">
+            <button class="titulo-detalle w-full flex justify-between py-4 font-sc tracking-wider text-left">Plazos y envío <span>+</span></button>
+            <div class="contenido-detalle pb-4 text-oliva/80" style="display:none">Cada Biblia se hace por encargo y tarda entre 2 y 4 semanas. Envíos a toda España; recogida en el taller con cita previa.</div>
+          </div>
+          <div class="detalle border-b border-oliva/20">
+            <button class="titulo-detalle w-full flex justify-between py-4 font-sc tracking-wider text-left">Cuidados <span>+</span></button>
+            <div class="contenido-detalle pb-4 text-oliva/80" style="display:none">Limpiar con un paño seco. Evitar el sol directo durante mucho tiempo para que la acuarela conserve sus colores.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== OTRAS BIBLIAS ===== -->
+    <section class="px-4 md:px-10 py-20 border-b border-oliva/20">
+      <h2 class="text-4xl mb-10">También te puede gustar</h2>
+      <div class="grid grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-12">
+      <a href="biblia-the-vine.html" class="group">
+        <img src="img/ramas-frente.jpg" alt="Biblia The Vine" class="w-full aspect-[5/7] object-cover">
+        <p class="text-2xl mt-3 group-hover:text-rosa">The Vine</p>
+        <p class="font-sc text-sm tracking-wider text-oliva/60">89 €</p>
+      </a>
+      <a href="biblia-sweeter-than-honey.html" class="group">
+        <img src="img/jardin-frente.jpg" alt="Biblia Sweeter than Honey" class="w-full aspect-[5/7] object-cover">
+        <p class="text-2xl mt-3 group-hover:text-rosa">Sweeter than Honey</p>
+        <p class="font-sc text-sm tracking-wider text-oliva/60">89 €</p>
+      </a>
+      <a href="biblia-above-the-waters.html" class="group">
+        <img src="img/mar-frente.jpg" alt="Biblia Above the Waters" class="w-full aspect-[5/7] object-cover">
+        <p class="text-2xl mt-3 group-hover:text-rosa">Above the Waters</p>
+        <p class="font-sc text-sm tracking-wider text-oliva/60">89 €</p>
+      </a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="px-4 md:px-10 py-14">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-8 mb-16">
+      <div>
+        <p class="font-sc tracking-[0.2em] text-sm mb-3 text-rosa">Tienda</p>
+        <ul class="space-y-1"><li><a href="index.html#coleccion">Colección</a></li><li><a href="index.html#estilos">Estilos</a></li><li><a href="index.html#contacto">Personalizada</a></li></ul>
+      </div>
+      <div>
+        <p class="font-sc tracking-[0.2em] text-sm mb-3 text-rosa">Información</p>
+        <ul class="space-y-1"><li><a href="index.html#taller">El taller</a></li><li><a href="#">Envíos</a></li><li><a href="#">Preguntas</a></li></ul>
+      </div>
+      <div>
+        <p class="font-sc tracking-[0.2em] text-sm mb-3 text-rosa">Síguenos</p>
+        <ul class="space-y-1"><li><a href="https://instagram.com/dvash.studio">Instagram</a></li><li><a href="#">Pinterest</a></li></ul>
+      </div>
+      <div>
+        <p class="font-sc tracking-[0.2em] text-sm mb-3 text-rosa">Visítanos</p>
+        <p>Madrid, con cita previa.</p>
+      </div>
+    </div>
+    <div class="flex justify-between items-end border-t border-oliva/20 pt-8">
+      <img src="img/logo-dvash.png" alt="Dvash" class="h-16 md:h-28">
+      <a href="#" class="font-sc tracking-wider text-sm hover:text-rosa">↑ volver arriba</a>
+    </div>
+  </footer>
+
+  <!-- ===== JS (jQuery) ===== -->
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script>
+    $(function () {
+
+      // Menú móvil
+      $('#btn-menu').on('click', function () {
+        const abierto = $(this).attr('aria-expanded') === 'true';
+        $(this).attr({ 'aria-expanded': !abierto, 'aria-label': abierto ? 'Abrir menú' : 'Cerrar menú' });
+        $('#menu-movil').stop().slideToggle(250);
+      });
+      $('#menu-movil a').on('click', function () {
+        $('#menu-movil').slideUp(200);
+        $('#btn-menu').attr({ 'aria-expanded': false, 'aria-label': 'Abrir menú' });
+      });
+      const precioBase = 89;
+      const extra = 15;
+
+      // Galería: cambiar entre portada y contraportada
+      $('.miniatura').on('click', function () {
+        const foto = $(this).data('foto'), alt = $(this).data('alt');
+        enPortada = foto.indexOf('frente') !== -1;
+        actualizarTapa();
+        $('.miniatura').removeClass('border-oliva').addClass('border-transparent');
+        $(this).removeClass('border-transparent').addClass('border-oliva');
+        $('#foto-principal').fadeOut(200, function () {
+          $(this).attr({ src: foto, alt: alt }).fadeIn(300);
+        });
+      });
+
+      // Mockup: muestra el nombre sobre la portada (solo en la foto de portada)
+      let enPortada = true;
+      function actualizarTapa() {
+        const nombre = $('#nombre').val().trim();
+        const activo = $('#personalizar').is(':checked');
+        $('#nombre-en-tapa').text(nombre || 'Sofía');
+        if (activo && enPortada) { $('#nombre-en-tapa').fadeIn(300); }
+        else { $('#nombre-en-tapa').fadeOut(200); }
+      }
+
+      // Personalización: muestra el campo y actualiza el precio
+      $('#personalizar').on('change', function () {
+        const activo = $(this).is(':checked');
+        $('#campo-nombre').stop().slideToggle(300);
+        $('#precio').text(activo ? precioBase + extra : precioBase);
+        actualizarTapa();
+      });
+
+      // Vista previa del nombre en dorado
+      $('#nombre').on('input', function () {
+        $('#vista-nombre').text($(this).val() || 'Sofía');
+        actualizarTapa();
+      });
+
+      // Acordeón de detalles
+      $('.titulo-detalle').on('click', function () {
+        const $contenido = $(this).next('.contenido-detalle');
+        $('.contenido-detalle').not($contenido).slideUp(250);
+        $('.titulo-detalle span').text('+');
+        $contenido.stop().slideToggle(250, function () {
+          $(this).prev().find('span').text($(this).is(':visible') ? '–' : '+');
+        });
+      });
+    });
+  </script>
+</body>
+</html>
