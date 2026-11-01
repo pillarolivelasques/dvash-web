@@ -49,6 +49,16 @@
   /* Ornamento que se dibuja al entrar en pantalla */
   .ornamento path { stroke-dasharray: 120; stroke-dashoffset: 120; animation: trazo 2.4s ease forwards; }
 
+  /* Palomas que cruzan la sección del salmo: una de izquierda a derecha y otra al revés */
+  .paloma { position: absolute; width: clamp(56px, 7vw, 96px); left: 0; pointer-events: none; will-change: transform; }
+  .paloma-verde { top: 16%; animation: vuelo-derecha 16s linear infinite; }
+  .paloma-rosa  { top: 30%; animation: vuelo-izquierda 19s linear infinite; animation-delay: -6s; }
+
+  /* Cordero: respira despacio y se mece un poco */
+  .cordero { transform-origin: 50% 90%; animation: respirar 5s ease-in-out infinite; }
+  /* Ángel: vuela flotando y se inclina como si tocara la trompeta */
+  .angel-vuela { animation: angel 7s ease-in-out infinite; transform-origin: 40% 60%; }
+
   /* Marco ilustrado */
   .marco { background: url(img/marco.png) center / 100% 100% no-repeat; }
 
@@ -146,3 +156,34 @@
 }
 
 @keyframes trazo { to { stroke-dashoffset: 0; } }
+
+/* Vuelo con un leve sube y baja, como un aleteo */
+@keyframes vuelo-derecha {
+  0%   { transform: translate(-15vw, 0)    rotate(-4deg); }
+  25%  { transform: translate(25vw, -18px) rotate(3deg); }
+  50%  { transform: translate(55vw, 6px)   rotate(-3deg); }
+  75%  { transform: translate(85vw, -14px) rotate(4deg); }
+  100% { transform: translate(115vw, 0)    rotate(-4deg); }
+}
+@keyframes vuelo-izquierda {
+  0%   { transform: translate(115vw, 0)    rotate(4deg); }
+  25%  { transform: translate(80vw, -16px) rotate(-3deg); }
+  50%  { transform: translate(50vw, 8px)   rotate(3deg); }
+  75%  { transform: translate(20vw, -12px) rotate(-4deg); }
+  100% { transform: translate(-15vw, 0)    rotate(4deg); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .paloma { animation: none; }
+  .paloma-verde { left: 18%; } .paloma-rosa { left: auto; right: 18%; }
+}
+
+@keyframes respirar {
+  0%, 100% { transform: scale(1, 1) rotate(0deg); }
+  40%      { transform: scale(1.012, 1.03) rotate(-1deg); }
+  70%      { transform: scale(1.005, 1.01) rotate(.6deg); }
+}
+@keyframes angel {
+  0%, 100% { transform: translate(0, 0) rotate(-3deg); }
+  30%      { transform: translate(6px, -12px) rotate(2deg); }
+  60%      { transform: translate(-4px, -6px) rotate(-1deg); }
+}
