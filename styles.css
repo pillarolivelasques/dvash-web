@@ -52,11 +52,7 @@
   /* Marco ilustrado */
   .marco { background: url(img/marco.png) center / 100% 100% no-repeat; }
 
-  /* Portada: las ramas se funden con el fondo a los lados y dejan un claro en el centro para la frase */
-  .portada-ramas {
-    -webkit-mask-image: linear-gradient(to right, transparent 0, #000 14%, #000 86%, transparent 100%);
-            mask-image: linear-gradient(to right, transparent 0, #000 14%, #000 86%, transparent 100%);
-  }
+  /* Portada: claro suave en el centro para que la frase se lea bien */
   .portada-velo { background: radial-gradient(ellipse 30% 26% at 50% 50%, rgba(246,241,227,.92) 40%, rgba(246,241,227,0) 100%); }
   .dark .portada-velo { background: radial-gradient(ellipse 30% 26% at 50% 50%, #1E2318 45%, rgba(30,35,24,0) 100%); }
   @media (max-width: 640px) {

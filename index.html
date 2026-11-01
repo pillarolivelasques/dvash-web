@@ -77,9 +77,10 @@
   <main>
 
   <!-- ===== PORTADA: ramos y frase ===== -->
-  <section id="portada" class="relative text-oliva border-b border-oliva/20 min-h-[85vh] flex items-center justify-center overflow-hidden dark:text-crema dark:border-crema/20">
-    <div class="portada-ramas absolute top-0 left-1/2 -translate-x-1/2 h-full aspect-[1000/1659] bg-center bg-no-repeat bg-cover"
-         style="background-image:url(img/ramas-fondo.png)" aria-hidden="true"></div>
+  <section id="portada" class="relative text-oliva border-b border-oliva/20 min-h-[calc(100svh-7rem)] flex items-center justify-center overflow-hidden dark:text-crema dark:border-crema/20">
+    <!-- Ramas a lo ancho de toda la pantalla (img/ramas-ancho.webp, versión ampliada de ramas-fondo) -->
+    <div class="portada-ramas absolute inset-0 bg-center bg-no-repeat bg-cover"
+         style="background-image:url(img/ramas-ancho.webp)" aria-hidden="true"></div>
     <div class="portada-velo absolute inset-0" aria-hidden="true"></div>
     <div class="relative z-10 text-center px-10 max-w-md">
       <p class="font-sc tracking-[0.3em] text-sm text-rosa mb-6">Salmo 119:103</p>
